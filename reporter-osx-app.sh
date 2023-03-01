@@ -1,8 +1,6 @@
 # !/bin/sh
 path=$1;
 
-$BROWSERSTACK_BUILD_NAME
-
 if [ -z "$path" ]; then
   echo "[ERROR] Output directory not passed. Please pass the first argument as output directory";
   exit 22;
@@ -18,6 +16,7 @@ if [ ! -d $path ]; then
   echo "[INFO] '$path' created";
 fi
 
+chmod -r 777 $path
 cd $path;
 
 jqpath=$(which jq)
