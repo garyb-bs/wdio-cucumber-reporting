@@ -16,7 +16,6 @@ if [ ! -d $path ]; then
   echo "[INFO] '$path' created";
 fi
 
-chmod -r 777 $path
 cd $path;
 
 jqpath=$(which jq)
