@@ -60,17 +60,17 @@ for session in $(echo $sessions | $jqpath -cr '.[]'); do
   echo "[TRACE] - In the sessions loop"
   session_json=$(echo $session | base64 -d);
   echo $session_json;
-  hashed_id=$(echo $session_json | $jqpath -cr '.hashed_id');
-  textLogsURL=$(echo $session_json | $jqpath -cr '.logs');
-  appiumLogsUrl=$(echo $session_json | $jqpath -cr '.appium_logs_url');
-  networkLogsUrl=$(echo $session_json | $jqpath -cr '.har_logs_url');
-  deviceLogsUrl=$(echo $session_json | $jqpath -cr '.device_logs_url');
-  # echo "Session ID: " + $hashed_id;
-  # echo "Text Logs: " + $textLogsURL;
-  # echo "Appium Logs: " + $appiumLogsUrl;
-  # echo "Network Logs: " + $networkLogsUrl;
-  # echo "Device Logs: " + $deviceLogsUrl;
-  # echo "Terminal Logs: " + $terminalLogsUrl;
+  hashed_id="test";#$(echo $session_json | $jqpath -cr '.hashed_id');
+  textLogsURL="test";#$(echo $session_json | $jqpath -cr '.logs');
+  appiumLogsUrl="test";#$(echo $session_json | $jqpath -cr '.appium_logs_url');
+  networkLogsUrl="test";#$(echo $session_json | $jqpath -cr '.har_logs_url');
+  deviceLogsUrl="test";#$(echo $session_json | $jqpath -cr '.device_logs_url');
+  echo "Session ID: " + $hashed_id;
+  echo "Text Logs: " + $textLogsURL;
+  echo "Appium Logs: " + $appiumLogsUrl;
+  echo "Network Logs: " + $networkLogsUrl;
+  echo "Device Logs: " + $deviceLogsUrl;
+  echo "Terminal Logs: " + $terminalLogsUrl;
   
   mkdir $hashed_id;
   curl -s -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" "$textLogsURL" > "$hashed_id"/text_logs.txt;
