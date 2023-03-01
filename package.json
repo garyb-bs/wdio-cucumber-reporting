@@ -16,7 +16,8 @@
     "on-prem-suite": "npx wdio resources/conf/wdio-on-prem-suite.conf.js",
     "on-prem": "npx wdio resources/conf/wdio-on-prem.conf.js",
     "test": "npx wdio resources/conf/wdio-on-prem.conf.js",
-    "generate-report": "npx allure generate -c allure-results && npx allure open",
+    "generate-allure-report": "npx allure generate -c allure-results && npx allure open",
+    "generate-report": "./reporter-osx-app.sh ./output",
     "test2": "echo \"This is another test\""
   },
   "keywords": [],
