@@ -56,6 +56,7 @@ echo "[INFO] HTML report created for build: $BROWSERSTACK_BUILD_NAME...."
 echo "[INFO] Downloading artifacts for the each session!"
 
 for session in $(echo $sessions | $jqpath -cr '.[]'); do
+  echo "[TRACE] - In the sessions loop"
   session_json=$(echo $session | base64 -d);
   # echo $session_json;
   hashed_id=$(echo $session_json | $jqpath -cr '.hashed_id');
@@ -73,9 +74,9 @@ for session in $(echo $sessions | $jqpath -cr '.[]'); do
   mkdir $hashed_id;
   curl -s -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" "$textLogsURL" > "$hashed_id"/text_logs.txt;
   curl -s -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" "$appiumLogsUrl" > "$hashed_id"/appium_logs.txt;
-  curl -s -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" "https://api-cloud.browserstack.com/app-automate/builds/" + $BROWSERSTACK_BUILD_NAME + "/sessions/" + $hashed_id + "/networklogs" > "$hashed_id"/network_logs.txt;
+  curl -s -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" "https://api-cloud.browserstack.com/app-automate/builds/" + $buildId + "/sessions/" + $hashed_id + "/networklogs" > "$hashed_id"/network_logs.txt;
   curl -s -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" "$deviceLogsUrl" > "$hashed_id"/device_logs.txt;
-  curl -s -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" "https://api-cloud.browserstack.com/app-automate/builds/" + $BROWSERSTACK_BUILD_NAME + "/sessions/" + $hashed_id + "/app_profiling" > "$hashed_id"/app_profiling.txt;
+  curl -s -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" "https://api-cloud.browserstack.com/app-automate/builds/" + $buildId + "/sessions/" + $hashed_id + "/app_profiling" > "$hashed_id"/app_profiling.txt;
   
   echo "[TRACE] Loaded data for session ID: $hashed_id";
 done;
