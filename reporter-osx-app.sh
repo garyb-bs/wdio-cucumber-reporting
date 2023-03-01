@@ -28,6 +28,7 @@ if [ ! $jq_found_status -eq 0 ]; then
   jqpath=$(echo $PWD/jq);
 fi;
 
+echo "JQuery Path: $jqpath"
 cp -v ../template.html template.html
 
 echo "[INFO] USERNAME - $BROWSERSTACK_USERNAME\tACCESS KEY - $BROWSERSTACK_ACCESS_KEY";
